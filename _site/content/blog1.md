@@ -10,5 +10,5 @@ The Other day, I searched for WAF evasion techniques. Just to get a rough idea w
 <br>
 <a href="https://medium.com/@themiddleblue">https://medium.com/@themiddleblue</a>
 
-Now moving on to the original CTF.Here's what it looks like.
-![]
+Now moving on to the original CTF.Here's what it looks like.<br>
+![Branching](https://raw.githubusercontent.com/Auror007/Auror007.github.io/master/rawimg/b1mainpage.png)
