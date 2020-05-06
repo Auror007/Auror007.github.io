@@ -99,7 +99,7 @@ $echo "cat /etc/passwd" | base64 -      # '-' takes input file as output of prev
 Y2F0IC9ldGMvcGFzc3dkCg==
 $ echo "Y2F0IC9ldGMvcGFzc3dkCg==" | base64 -d  #-d for decode
 cat /etc/passwd                         #yay! It outputs our payload command.
-$ $(echo "Y2F0IC9ldGMvcGFzc3dkCg==" | base64 -d )  #Instead of printing this will execute the above output.
+$ $(echo "Y2F0IC9ldGMvcGFzc3dkCg==" | base64 -d )  #Instead of printing this it will execute the above output.
 ```
 <br>
 Let's inject this in the rce1.php.
