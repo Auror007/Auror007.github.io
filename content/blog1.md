@@ -128,7 +128,7 @@ Success! Never thought this would ever work, but it did.I wanted to see where I 
 $(echo+Y2F0IC9ldGMvcGFzc3dkCg==+oops+|+base64+-d+-)
 ```
  Here all the + signs are converted to spaces as this string is parsed. And then base64 decoding uses blocks of 3 characters to decode. It uses = or == as padding if one or two characters are remaining respectively to complete the count of 3.As the command decodes the string it does not care about the string "oops" because of the '+' which was parsed as a space in between.
-Ctrl + x.Shutdown.Go to sleep.
+Ctrl + d.Shutdown.Go to sleep.
 <br>
 ```
 Thank You! ;)
