@@ -8,7 +8,7 @@ It is always a great experience with NullAhm.There was a wonderful CTF challenge
 
 The Other day, I searched for WAF evasion techniques. Just to get a rough idea what it is like dealing with WAF.I came across some wonderfull stuff by @Menin_TheMiddle. Worth a read.
 <br>
-<a href="https://medium.com/@themiddleblue">https://medium.com/@themiddleblue</a>
+<a href="https://medium.com/@themiddleblue" target=_blank>https://medium.com/@themiddleblue</a>
 
 Now moving on to the original CTF.Here's what it looks like.
 <br>
@@ -38,7 +38,7 @@ I tried to download that file using wget but it only contained the above respons
 
 Lets try other things that were pointed by the hint given in Twitter Page of @NullAhm.It said that rce.php can be solved by the @Menin_TheMiddle articles.I had ~~read~~ skimmed through them. Now it was time to read it.This article focuses on wildcards also known as globbing patterns($man 7 glob).
 
-<a href="https://medium.com/secjuice/waf-evasion-techniques-718026d693d8">https://medium.com/secjuice/waf-evasion-techniques-718026d693d8</a>
+<a href="https://medium.com/secjuice/waf-evasion-techniques-718026d693d8" target=_blank>https://medium.com/secjuice/waf-evasion-techniques-718026d693d8</a>
 
 #### Wildcard Table
 
