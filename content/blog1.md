@@ -120,14 +120,14 @@ games:x:5:60:games:/usr/games:/usr/sbin/nologin
 man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
 ...
 ```
-Success! Never thought this would ever work, but it did.I wanted to see where I got lucky.I searched about how base64 encoding worked and found an interesting property.  
+Success! Never thought this would ever work, but it did.I wanted to see where I got lucky.I searched about how base64 encoding worked and found an interesting property.base64 encoded data is a string of character that contains only a-z, A-Z, 0-9, + and / characters.No spaces. 
 <br>
 <br>
 
 ```
 $(echo+Y2F0IC9ldGMvcGFzc3dkCg==+oops+|+base64+-d+-)
 ```
- Here all the + signs are converted to spaces as this string is parsed. And then base64 decoding uses blocks of 3 charcters to decode. It uses = or == as padding if one or two characters are remaining respectively to complete the count of 3.As the command decodes the string it does not care about the string "oops" because of the '+' which was parsed as a space in between. base64 encoded data is a string of character that contains only a-z, A-Z, 0-9, + and / characters.No spaces.
+ Here all the + signs are converted to spaces as this string is parsed. And then base64 decoding uses blocks of 3 characters to decode. It uses = or == as padding if one or two characters are remaining respectively to complete the count of 3.As the command decodes the string it does not care about the string "oops" because of the '+' which was parsed as a space in between.
 Ctrl + x.Shutdown.Go to sleep.
 <br>
 ```
