@@ -12,4 +12,4 @@ When I am not staring at screen questioning my life decisions or on the verge of
 of window during debugging sessions, I like to click bird pictures and gaze at stars.
 
 
->##### __"Insert quote here"__ 
+ >  _*"Insert quote here"*_ 
