@@ -1,5 +1,5 @@
 baseURL = "http://auror007.github.io"
-title = "Parth's Portfolio"
+title = "Parth's Blog"
 theme = "hugo-coder"
 languageCode = "en"
 defaultContentLanguage = "en"
