@@ -6,4 +6,4 @@ draft: false
 
 Email: parmar[dot]parth97531[at]gmail[dot]com
 
-Add Public GPG Key link
+PGP Key: https://keybase.io/parthp1/pgp_keys.asc

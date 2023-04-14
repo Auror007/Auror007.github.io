@@ -1,4 +1,4 @@
-baseURL = "http://www.example.com"
+baseURL = "http://auror007.github.io"
 title = "Parth's Portfolio"
 theme = "hugo-coder"
 languageCode = "en"
@@ -14,7 +14,7 @@ style = "github-dark"
 [params]
 author = "Parth Parmar"
 license = '<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA-4.0</a>'
-description = "John Doe's personal website"
+description = "Parth's personal website"
 keywords = "blog,developer,personal"
 info = ["Security Geek", "Code Wizard"]
 avatarURL = "images/avatar.jpg"
@@ -196,9 +196,9 @@ name = "Contact me"
 weight = 5
 url = "contact/"
 
-[languages.pt-br]
-languageName = ":india:"
-title = "João Ninguém"
+# [[languages.pt-br]]
+# languageName = ":Hindi:"
+# title = "João Ninguém"
 
 # [languages.pt-br.params]
 # author = "João Ninguém"
