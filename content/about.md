@@ -11,5 +11,7 @@ by using the contact links in the websites.
 When I am not staring at screen questioning my life decisions or on the verge of throwing the monitor out 
 of window during debugging sessions, I like to click bird pictures and gaze at stars.
 
+<br>
 
- >  _*"Insert quote here"*_ 
+ >   “_*The secret of life, though, is to fall seven times and to get up eight times.*_”
+ >   ―  Paulo Coelho, The Alchemist  
