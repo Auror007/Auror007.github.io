@@ -46,8 +46,8 @@ such activity in real time.
     </em>
 </div>
 
-- Collaborated on ’Data Driven Security’ research project focusing on metrics about exploitability of a vulnerability,
-providing likelihood of a functional exploit being devised for it in near future.
+- Collaborated on ’Data Driven Security’ research project focusing on metrics about exploitability of vulnerabilities,
+providing likelihood of a functional exploit being devised for CVEs in near future.
 - Analyzed various data endpoints and wrote crawlers using python and tested on docker.
 - Provided support for website and debug issues along with development of python modules for parsing and crawling,
 decreasing load time of website by nearly 70% using AWS.
@@ -91,7 +91,7 @@ increase community reach on all social media platforms through content creation.
 - Collaborated on development of GXSS 2.0 - A tool for employing parameter reflection to detect XSS made using Go
 lang. Developed an addon functionality allowing addition of custom headers and User-agent to requests.
 
-### Coming Soon :)
+### BSidesCharm 2023 Conference
 ---
 
 <div>
@@ -101,3 +101,6 @@ lang. Developed an addon functionality allowing addition of custom headers and U
     </em>
 </div>
 
+
+- Volunteered for various roles at conference.
+- Connected with some amazing folks in cybersecurity.
