@@ -11,11 +11,12 @@ draft: false
 <div>
     <em>
         <div style="float:left"> Teaching Assistant - ENPM693 Network Security</div>
-        <div align="right">January 2023 - Present</div>
+        <div align="right">January 2023 - May 2023</div>
     </em>
 </div>
 
-- Helped students with course queries and understanding subject.
+- Teaching assistant for the course ENPM693 Network Security at UMD.
+- Helped students with their queries about the course materials.
 <br>
 
 ### Sophos 
@@ -86,9 +87,9 @@ performance enhancements and bug fixing.
 
 
 - Received mentorship from professionals
-- Delivered two talks (1. Attacks on JWT 2. Hacking with Go) on monthly meetups and prepared a blog website to
+- Delivered two talks ([1. Attacks on JWT](https://www.youtube.com/watch?v=e0LF_eVAsXA) [2. Hacking with Go](https://www.youtube.com/watch?v=13yIGEmyAqQ&t=7796s)) on monthly meetups and prepared a blog website to
 increase community reach on all social media platforms through content creation.
-- Collaborated on development of GXSS 2.0 - A tool for employing parameter reflection to detect XSS made using Go
+- Collaborated on development of [GXSS 2.0](https://github.com/Auror007/Gxss) - A tool for employing parameter reflection to detect XSS made using Go
 lang. Developed an addon functionality allowing addition of custom headers and User-agent to requests.
 
 ### BSidesCharm 2023 Conference
