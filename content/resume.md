@@ -6,4 +6,4 @@ draft: false
 
 [Download the PDF :page_facing_up:](/resume/Parth_Parmar_Resume.pdf)
 
-![Resume](/images/Parth_Parmar_Resume.jpg)
+{{< embed-pdf url="/resume/Parth_Parmar_Resume.pdf" hidePaginator="true" >}}
