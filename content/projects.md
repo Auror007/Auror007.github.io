@@ -13,7 +13,7 @@ Attackers usually try to achieve code execution using install scripts in the pac
 This can be monitored using a simple script which collects all the change events from the npm stream
 and perform grep for commandline keywords such as "bash","curl","wget" etc.
 
-:link: https://github.com/Auror007/demo_sophos
+:link: https://github.com/Auror007/NPM-Registry-Follower
 
 
 
