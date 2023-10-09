@@ -11,7 +11,7 @@ tags = [
 > Dear Parth, <br>
 > We are happy to inform you that you have successfully completed the Penetration Testing with Kali Linux certification exam and have obtained your Offsec Certified Professional (OSCP) certification.
 
-This message is what I dreamt of nearly 2 years ago. Not knowing what it will take me through and amount of efforts required to earn this certification. I am writing this blog to share with fellow OSCP Aspirants my experience, resources and how a computer game helped me build my "Try Harder" mindset. This is a humble attempt inorder to help others and try to make you believe that you can do it too.
+This message is what I dreamt of nearly 2 years ago. Not knowing what it would take me through and amount of efforts required to earn this certification. I am writing this blog to share with fellow OSCP Aspirants my experience, resources and how a computer game helped me build my "Try Harder" mindset. This is a humble attempt inorder to help others and try to make you believe that you can do it too.
 
 > NOTE: These suggestions are based on my perspective and experiences. Yours might be different so use what you like and develop your own methodology to learn. 
 
@@ -47,7 +47,7 @@ I bought the PWK Course near the end of February 2023 and started doing the exce
 
 ##### Phase 4: Lab Extension and setup for exam
 ---
-This is the most important part as I completed nearly 38+ machines in under 25 days of time. Ligolo-ng was my friend. Used it heavily during the labs. Took notes of each machine I did and treating it exactly like an exam machine. During the course, I made elaborate notes of various commands and concepts that I didn't know about. And while doing the labs I made a very short cheatsheet of commands which I could copy paste for easier access during exam. Took hints whenever I got stuck for enumeration and methodology. But I added those things to my personal "Do not forget list" so that it was never repeated. Sometimes, the box itself is not setup properly so reverts are helpful in practice as well as the actual exam.
+This is the most important part as I completed nearly 38+ machines in under 25 days of time. Ligolo-ng was my friend. Used it heavily during the labs. Took notes of each machine I did and treating it exactly like an exam machine. During the course, I made elaborate notes of various commands and concepts that I didn't know about. And while doing the labs I made a very short cheatsheet of commands which I could copy paste for easier access during exam. Took hints whenever I got stuck for enumeration and methodology. But I added those things to my personal "Do not forget list" so that it was never repeated. Sometimes, the box itself is not set up properly so reverts are helpful in practice as well as the actual exam.
 
 
 I scheduled my exam on 4th July 2023 10 AM to 9:45 AM 5th July 2023. Didn't touch my laptop on 3rd of July but made sure to prepare for the exam on or before 2nd July. For notes, tested obsidian + git combination to sync notes. Used "Flameshot" tool for screenshots. Organized folder and copied my condensed cheatsheet and notes to the same folder. Copied personal note template for machines made during labs. Made a snapshot of the VM's state before turning it off. Enjoyed and relaxed on the day before exam and slept early.
@@ -60,11 +60,11 @@ Logged in to the portal 20 mins before the start time, waiting for the proctor t
 - 10:00 AM Started scanning the AD set and 2 other machines simultaneously. My strategy was to continue with AD set if I get initial vector in 4 hours. 
 - 12:00 PM Got initial access to first standalone machine
 - 12:30 PM Got initial access to AD machine
-- 3:00 PM Still stuck on AD privesc and reverted twice. Asked the proctor to check if the machine was in correct configuration or not. It took around 2 hours for finishing and uses 2 reverts from our pool. While I continued on other standlone machines.
+- 3:00 PM Still stuck on AD privesc and reverted twice. Asked the proctor to check if the machine was in correct configuration or not. It took around 2 hours for finishing and used 2 reverts from our pool. While I continued on other standlone machines.
 - 4:00 PM Got root user on the first standalone machine.
 - 5:00 PM Initial access on second standalone machine. At this point, I was confused whether to pursue AD Set or do the other boxes. Took a break for thinking.
 - 6:30 PM Privesced initial AD client and got the confidence to pursue other machines in AD set.
-- 7:00 PM Setup ligolo agent and started scanning internal IPs. Got Initial access to 2nd client.
+- 7:00 PM Set up ligolo agent and started scanning internal IPs. Got Initial access to 2nd client.
 - 7:30 - 8:30 PM Dinner break.
 - 8:30 PM After trying complex vectors, simple things got me another privesc.
 - 9:30 PM Gained access as Domain Admin :)
