@@ -69,7 +69,7 @@ Logged in to the portal 20 mins before the start time, waiting for the proctor t
 - 8:30 PM After trying complex vectors, simple things got me another privesc.
 - 9:30 PM Gained access as Domain Admin :)
 
-Essentially this was 80 marks in the bag in under 11 hours including the bonus points from excercises. For those who don't know about the recent update from offsec, now we don't have to prepare a report for all the excercises. Just complete atleast 80% of excercises from each module.
+Essentially this was 80 marks in the bag in under 11 hours including the bonus points from excercises. For those who don't know about the recent update from offsec, now we don't have to prepare a report for all the excercises. Just complete atleast 80% of excercises from each module and 30 proof.txt submissions (Root level access) in labs. 
  
 - 10:00 PM - 1:00 AM Reverted all machines and repeated steps from my notes in a copy-paste manner. Took a lot of screenshots.
 - 1:00 AM - 6:30 AM Sleep
