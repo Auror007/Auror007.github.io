@@ -70,6 +70,23 @@ decreasing load time of website by nearly 70% using AWS.
 performance enhancements and bug fixing.
 - Awarded Alfresco champion for analyzing and fixing a multi-threaded batch job failure.
 
+<br>
+
+# Talks
+
+### NULL Community - Ahmedabad Chapter
+---
+
+<div>
+    <em>
+        <div style="float:left">Volunteer</div>
+        <div align="right">December 2019 - December 2021</div>
+    </em>
+</div>
+
+
+-  [1. Attacks on JWT](https://www.youtube.com/watch?v=e0LF_eVAsXA)
+-  [2. Hacking with Go](https://www.youtube.com/watch?v=13yIGEmyAqQ&t=7796s) 
 
 <br>
 
@@ -87,7 +104,7 @@ performance enhancements and bug fixing.
 
 
 - Received mentorship from professionals
-- Delivered two talks ([1. Attacks on JWT](https://www.youtube.com/watch?v=e0LF_eVAsXA) [2. Hacking with Go](https://www.youtube.com/watch?v=13yIGEmyAqQ&t=7796s)) on monthly meetups and prepared a blog website to
+- Delivered two talks on monthly meetups and prepared a blog website to
 increase community reach on all social media platforms through content creation.
 - Collaborated on development of [GXSS 2.0](https://github.com/Auror007/Gxss) - A tool for employing parameter reflection to detect XSS made using Go
 lang. Developed an addon functionality allowing addition of custom headers and User-agent to requests.
@@ -105,3 +122,15 @@ lang. Developed an addon functionality allowing addition of custom headers and U
 
 - Volunteered for various roles at conference.
 - Connected with some amazing folks in cybersecurity.
+
+<br>
+
+# Catch the Flag Competitions
+
+### Huntress CTF 2023
+---
+
+
+- Finished 174th out of 4210 teams and 8983 players
+- Solved 54/62 challenges (88% completion)
+- Learnt various new tools/techniques in reverse engineering specifically helpful in malware analysis
