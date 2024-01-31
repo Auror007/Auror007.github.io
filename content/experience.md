@@ -5,6 +5,22 @@ draft: false
 ---
 <br>
 
+
+### Sophos 
+---
+
+<div>
+    <em>
+        <div style="float:left"> Threat Analyst</div>
+        <div align="right">June 2022 - August 2022</div>
+    </em>
+</div>
+
+- Conducted Incident response for active threats, Investigations and Threat Hunts to secure customer infrastructure.
+- Formulated Cyberchef recipes to de-obfuscate Cobalt Strike Beacons and extract IOCs.
+- Attributed MITRE TTPs to popular APTs during active incidents.
+<br>
+
 ### University of Maryland 
 ---
 
