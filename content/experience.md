@@ -12,7 +12,7 @@ draft: false
 <div>
     <em>
         <div style="float:left"> Threat Analyst</div>
-        <div align="right">June 2022 - August 2022</div>
+        <div align="right">August 2023 - Present</div>
     </em>
 </div>
 
